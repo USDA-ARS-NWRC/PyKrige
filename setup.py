@@ -27,24 +27,22 @@ PACKAGES = ['pykrige']
 PCKG_DAT = {'pykrige': ['README.rst', 'CHANGELOG.md', 'LICENSE.txt',
                         'MANIFEST.in', join('test_data', '*.txt'),
                         join('test_data', '*.asc')]}
-REQ = ['numpy', 'scipy', 'matplotlib']
 
-for req in REQ:
-    try:
-        __import__(req)
-    except ImportError:
-        print("**************************************************")
-        print("Error: PyKrige relies on the installation of the SciPy stack "
-              "(Numpy, SciPy, matplotlib) to work. "
-              "For instructions for installation, please view "
-              "https://www.scipy.org/install.html."
-              "\n {} missing".format(req) 
-              )
-        print("**************************************************")
-        raise
-        sys.exit(1)
-# python setup.py install goes through REQ in reverse order than pip
+min_numpy_ver = '1.14.0'
+min_scipy_ver = '1.0.0'
+min_matplotlib_ver = '2.0.0'
 
+setuptools_kwargs = {
+    'install_requires': [
+        'numpy >= {numpy_ver}'.format(numpy_ver=min_numpy_ver),
+        'scipy >= {scipy_ver}'.format(scipy_ver=min_scipy_ver),
+        'matplotlib >= {matplotlib_ver}'.format(matplotlib_ver=min_matplotlib_ver),
+    ],
+    'setup_requires': ['numpy >= {numpy_ver}'.format(numpy_ver=min_numpy_ver)],
+}
+
+
+min_cython_ver = '0.28.2'
 
 CLSF = ['Development Status :: 5 - Production/Stable',
         'Intended Audience :: Science/Research',
@@ -137,12 +135,13 @@ def run_setup(with_cython):
               url=URL, description=DESC, long_description=LDESC,
               packages=PACKAGES, package_data=PCKG_DAT, classifiers=CLSF,
               ext_modules=ext_modules, include_dirs=[np.get_include()],
-              cmdclass=cmd)
+              cmdclass=cmd,**setuptools_kwargs)
 
     else:
         setup(name=NAME, version=VERSION, author=AUTHOR, author_email=EMAIL,
               url=URL, description=DESC, long_description=LDESC,
-              packages=PACKAGES, package_data=PCKG_DAT, classifiers=CLSF)
+              packages=PACKAGES, package_data=PCKG_DAT, classifiers=CLSF,
+	      **setuptools_kwargs)
 
 
 try:
