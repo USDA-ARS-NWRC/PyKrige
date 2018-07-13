@@ -395,7 +395,7 @@ class OrdinaryKriging:
 
     def display_variogram_model(self):
         """Displays variogram model with the actual binned data."""
-	import matplotlib.pyplot as plt
+        import matplotlib.pyplot as plt
         fig = plt.figure()
         ax = fig.add_subplot(111)
         ax.plot(self.lags, self.semivariance, 'r*')
@@ -418,7 +418,7 @@ class OrdinaryKriging:
 
     def plot_epsilon_residuals(self):
         """Plots the epsilon residuals for the variogram fit."""
-	import matplotlib.pyplot as plt
+        import matplotlib.pyplot as plt
         fig = plt.figure()
         ax = fig.add_subplot(111)
         ax.scatter(range(self.epsilon.size), self.epsilon, c='k', marker='*')
@@ -731,7 +731,7 @@ class OrdinaryKriging:
             if self.coordinates_type == 'geographic':
                 # Convert euclidean distances to great circle distances:
                 bd = core.euclid3_to_great_circle(bd)
-            
+
             if backend == 'loop':
                 zvalues, sigmasq = \
                     self._exec_loop_moving_window(a, bd, mask, bd_idx)
@@ -748,7 +748,7 @@ class OrdinaryKriging:
             if self.coordinates_type == 'geographic':
                 # Convert euclidean distances to great circle distances:
                 bd = core.euclid3_to_great_circle(bd)
-            
+
             if backend == 'vectorized':
                 zvalues, sigmasq = self._exec_vector(a, bd, mask)
             elif backend == 'loop':

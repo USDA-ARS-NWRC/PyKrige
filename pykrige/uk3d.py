@@ -476,7 +476,7 @@ class UniversalKriging3D:
 
     def display_variogram_model(self):
         """Displays semivariogram and variogram model."""
-	import matplotlib.pyplot as plt
+        import matplotlib.pyplot as plt
         fig = plt.figure()
         ax = fig.add_subplot(111)
         ax.plot(self.lags, self.semivariance, 'r*')
@@ -498,7 +498,7 @@ class UniversalKriging3D:
 
     def plot_epsilon_residuals(self):
         """Plots the epsilon residuals for the variogram fit. No arguments."""
-	import matplotlib.pyplot as plt
+        import matplotlib.pyplot as plt
         fig = plt.figure()
         ax = fig.add_subplot(111)
         ax.scatter(range(self.epsilon.size), self.epsilon, c='k', marker='*')
