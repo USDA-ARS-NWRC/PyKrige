@@ -1,6 +1,6 @@
 *.pyc
 *.egg-info/
-*.egg/
+*.eggs/
 build/
 doc/_build/
 *.swp
