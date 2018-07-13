@@ -57,6 +57,7 @@ try:
     import Cython.Compiler.Options
     Cython.Compiler.Options.annotate = False
     try_cython = True
+
 except ImportError:
     print("**************************************************")
     print("WARNING: Cython is not currently installed. "
